@@ -1,0 +1,97 @@
+<html>
+<head>
+	<meta name="viewport" content="device-width, initial-scale=1">
+	<link rel="stylesheet" href="w3.css">
+	<title>Quiz 3</title>
+</head>
+<body>
+	<form name="form">
+	<center>
+	<div class="w3-container">
+		<div class="w3-container w3-card-4 w3-yellow w3-panel">
+			<h1>PENJUALAN TIKET KERETA API
+		</div>
+		<div class="w3-container w3-panel w3-card-4 w3-gray">
+			<table>
+				<tr><td><b>KOTA TUJUAN<td>:<select name="kota">
+				<option value="bandung">BANDUNG
+				<option value="jakarta">JAKARTA
+				<option value="surabaya">SURABAYA
+				<tr><td>KELAS<td>:<input type="radio" name="kelas" value="ekonomi">EKONOMI
+				<tr><td><td>:<input type="radio" name="kelas" value="bisnis">BISNIS
+				<tr><td><td>:<input type="radio" name="kelas" value="eksekutif">EKSEKUTIF
+				<tr><td colspan="20"><hr>
+				<tr><td>FASILITAS TAMBAHAN<td>:<input type="checkbox" name="makanan">MAKANAN
+				<tr><td><td>:<input type="checkbox" name="wifi">WIFI
+				<tr><td><td>:<input type="checkbox" name="minuman">MINUMAN
+				<tr><td>JUMLAH<td>:<input type="text" name="jumlah" style="width: 20px;>
+				<tr><td colspan="20"><hr>
+				<tr><td>HARGA TIKET + TAMBAHAN<td>:<input type="text" name="TT" disabled="">
+				<tr><td>SUB TOTAL<td>:<input type="text" name="subtotal" disabled="">
+				<tr><td>DISKON<td>:<input type="text" name="diskon" disabled="">
+				<tr><td>TOTAL HARGA<td>:<input type="text" name="total" disabled="">
+			</table>
+		</div>
+		<div class="w3-container w3-panel w3-card-4 w3-blue">
+			<input type="button" value="PROSES" onclick="proses()">
+			<button>RISET</button>
+		</div>
+	</div>
+	<script>
+	function proses()
+	{
+		var kota = document.form.kota.value;
+		var kelas = document.form.kelas.value;
+		var tambahan = 0;
+		var TT = document.form.TT.value;
+		var tambah = 0;
+		var tiket = 0;
+		var jumlah = document.form.jumlah.value;
+		var subtotal = document.form.subtotal.value;
+		var diskon1 = 0;
+		var total = document.form.total.value;
+		var gaji = 0;
+		if (kota == "bandung"){
+			if (kelas == "ekonomi") {gaji = 70000;}
+			if (kelas == "bisnis") {gaji = 80000;}
+			if (kelas == "eksekutif") {gaji = 90000;}
+		}
+		if (kota == "jakarta"){
+			if (kelas == "ekonomi") {gaji = 1000000;}
+			if (kelas == "bisnis") {gaji = 1500000;}
+			if (kelas == "eksekutif") {gaji = 2000000;}
+		}
+		if (kota == "surabaya"){
+			if (kelas == "ekonomi") {gaji = 1500000;}
+			if (kelas == "bisnis") {gaji = 2000000;}
+			if (kelas == "eksekutif") {gaji = 3000000;}
+		}
+		if (document.form.makanan.checked){
+			tambah += 15000
+		}
+		if (document.form.wifi.checked){
+			tambah += 15000
+		}
+		if (document.form.minuman.checked){
+			tambah += 15000
+		}
+		if (jumlah > 3){
+			diskon1 += 0.3;
+		}
+		
+		TT = gaji + tambah;
+		document.form.TT.value=TT;
+		
+		subtotal = TT * jumlah ;
+		document.form.subtotal.value=subtotal;
+		
+		diskon = subtotal*diskon1;
+		document.form.diskon.value=diskon;
+		
+		total = subtotal - diskon;
+		document.form.total.value=total;
+		
+	}
+	</script>
+<body>
+</html>
